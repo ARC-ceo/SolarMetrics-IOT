@@ -3,6 +3,12 @@
 
 Este módulo faz parte do ecossistema **SolarMetrics** e é responsável pela leitura e transmissão dos dados de corrente e tensão utilizando sensores acoplados ao **ESP32**, enviando-os via **MQTT** para o fluxo do **Node-RED**, que por sua vez redireciona os dados para APIs, dashboards ou sistemas de análise.
 
+## Sobre o time
+
+- **Arthur Algate RM:560109**: Responsável pelo banco de dados e Compliance QA.  
+- **Carlos Clementino RM:561187**: Responsável pelo desenvolvimento da API em Java Spring Boot e .NET, infraestrutura e práticas de DevOps, e pela integração com dispositivos IoT.  
+- **Eder Silva RM:559647**: Responsável pela criação do APP mobile.
+
 ## Descrição Geral
 
 Este repositório inclui:
@@ -94,6 +100,7 @@ Pode ser acessado via navegador após iniciar o live server do dashboard.
 
 ```
 /
+   |- documentacao.pdf
    |- fluxo-node.json
    |- codigo-fonte.ino
    |- index.html
