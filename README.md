@@ -1,3 +1,4 @@
+![Logo](banner.jpg)
 # SolarMetrics - Módulo de Sensores IoT (ESP32 + MQTT + Node-RED)
 
 Este módulo faz parte do ecossistema **SolarMetrics** e é responsável pela leitura e transmissão dos dados de corrente e tensão utilizando sensores acoplados ao **ESP32**, enviando-os via **MQTT** para o fluxo do **Node-RED**, que por sua vez redireciona os dados para APIs, dashboards ou sistemas de análise.
