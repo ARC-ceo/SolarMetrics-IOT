@@ -10,7 +10,7 @@ Este repositório inclui:
 - Código em **C++** para ESP32
 - Comunicação MQTT com broker local ou remoto
 - Fluxo Node-RED integrado
-- Dashboard em Node-RED para visualização em tempo real
+- Dashboard para visualização em tempo real
 
 A leitura de corrente e tensão é feita por sensores conectados ao ESP32, que publica os dados em tópicos MQTT específicos. O Node-RED consome esses tópicos, processa os valores e envia para o backend ou exibe diretamente em dashboards.
 
@@ -19,7 +19,7 @@ A leitura de corrente e tensão é feita por sensores conectados ao ESP32, que p
 ## Arquitetura
 
 ```
-[Sensores] -> [ESP32] -> [MQTT Broker] -> [Node-RED Flow] -> [Dashboard / API]
+[Sensores] -> [ESP32] -> [MQTT Broker] -> [Node-RED] -> [Dashboard / API]
 ```
 
 ---
@@ -46,64 +46,13 @@ A leitura de corrente e tensão é feita por sensores conectados ao ESP32, que p
 - Arduino IDE ou PlatformIO
 - Biblioteca PubSubClient
 - Node-RED instalado
-- Broker MQTT (Mosquitto recomendado)
+- Broker MQTT
 
 ---
 
 ## Código ESP32 (C++)
 
-```cpp
-#include <WiFi.h>
-#include <PubSubClient.h>
-
-const char* ssid = "SEU_WIFI";
-const char* password = "SENHA_WIFI";
-const char* mqtt_server = "192.168.0.10"; // Endereço do broker
-
-WiFiClient espClient;
-PubSubClient client(espClient);
-
-void setup_wifi() {
-  delay(10);
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-  }
-}
-
-void reconnect() {
-  while (!client.connected()) {
-    if (client.connect("ESP32Client")) {
-      // conectado
-    } else {
-      delay(5000);
-    }
-  }
-}
-
-void setup() {
-  Serial.begin(115200);
-  setup_wifi();
-  client.setServer(mqtt_server, 1883);
-}
-
-void loop() {
-  if (!client.connected()) {
-    reconnect();
-  }
-  client.loop();
-
-  int sensorCorrente = analogRead(34);
-  int sensorTensao = analogRead(35);
-
-  String payload = String("{") +
-                   "\"corrente\":" + sensorCorrente + "," +
-                   "\"tensao\":" + sensorTensao + "}";
-
-  client.publish("solarmetrics/sensores", payload.c_str());
-  delay(2000);
-}
-```
+O código C++ completo do ESP32 está localizado dentro dos arquivos do repositório.
 
 ---
 
@@ -111,7 +60,7 @@ void loop() {
 
 O fluxo deve incluir:
 
-- Nó de entrada MQTT (subscribe em `solarmetrics/sensores`)
+- Nó de entrada MQTT (subscribe em `sensor/control`)
 - Nó function para converter dados brutos
 - Nó de saída (API, dashboard ou banco de dados)
 
@@ -125,36 +74,32 @@ O dashboard inclui:
 
 - Indicadores em tempo real (corrente, tensão)
 - Gráficos históricos
-- Status da conexão MQTT
+- Status do sistema
 
-Pode ser acessado via navegador após iniciar o Node-RED.
+Pode ser acessado via navegador após iniciar o live server do dashboard.
 
 ---
 
 ## Como rodar os serviços
 
-1. Instale e configure o **Mosquitto MQTT Broker**
-2. Suba o **Node-RED** via Docker ou localmente
-3. Importe o fluxo incluído no repositório
-4. Conecte o ESP32 à rede Wi-Fi
-5. Visualize os dados no dashboard
+1. Inicie o **Node-RED** localmente em sua máquina (`node-red` no terminal) e importe o fluxo disponível no repositório.
+2. Configure o broker MQTT conforme indicado no fluxo.
+3. Conecte o **ESP32** à rede Wi-Fi para iniciar o envio dos dados.
+4. Abra o **VS Code** e acesse a pasta do repositório.
+5. Abra o arquivo `index.html` e inicie o **Live Server** para visualizar os dados em tempo real.
 
 ---
 
 ## Estrutura do Repositório
 
 ```
-/esp32
-   |- codigo.cpp
-/node-red
-   |- fluxo.json
-/dashboard
-   |- layout.json
+/
+   |- fluxo-node.json
+   |- codigo-fonte.ino
+   |- index.html
 ```
 
 ---
 
-## Contato
-
-Para suporte técnico ou melhorias, entre em contato com a equipe SolarMetrics.
+**SolarMetrics** — Sua energia. Seu controle  ☀️
 
