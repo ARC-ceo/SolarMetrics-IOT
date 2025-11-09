@@ -1,0 +1,147 @@
+[
+    {
+        "id": "c1d4d51eaaa4bb33",
+        "type": "tab",
+        "label": "Fluxo 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2d9dea2bce16332a",
+        "type": "mqtt in",
+        "z": "c1d4d51eaaa4bb33",
+        "name": "",
+        "topic": "sensor/control",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "b0da0f74615829cf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 690,
+        "y": 300,
+        "wires": [
+            [
+                "8146248954abbecd"
+            ]
+        ]
+    },
+    {
+        "id": "127f92c00c498bc5",
+        "type": "debug",
+        "z": "c1d4d51eaaa4bb33",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "56c12920cbbde7fe",
+        "type": "http response",
+        "z": "c1d4d51eaaa4bb33",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1190,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "625d279d35c5167e",
+        "type": "http in",
+        "z": "c1d4d51eaaa4bb33",
+        "name": "",
+        "url": "/info",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 680,
+        "y": 420,
+        "wires": [
+            [
+                "220e212350ce4ae9"
+            ]
+        ]
+    },
+    {
+        "id": "8146248954abbecd",
+        "type": "function",
+        "z": "c1d4d51eaaa4bb33",
+        "name": "leitura sensor",
+        "func": "let sensorinfo = msg.payload;\nflow.set('dadosMqtt', sensorinfo);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 300,
+        "wires": [
+            [
+                "127f92c00c498bc5"
+            ]
+        ]
+    },
+    {
+        "id": "220e212350ce4ae9",
+        "type": "function",
+        "z": "c1d4d51eaaa4bb33",
+        "name": "response leitura",
+        "func": "let sensorinfo = flow.get('dadosMqtt');  \nmsg.payload = {sensorinfo}; \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 420,
+        "wires": [
+            [
+                "56c12920cbbde7fe"
+            ]
+        ]
+    },
+    {
+        "id": "b0da0f74615829cf",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.15.93",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
