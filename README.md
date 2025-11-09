@@ -6,7 +6,7 @@ Este módulo faz parte do ecossistema **SolarMetrics** e é responsável pela le
 ## Sobre o time
 
 - **Arthur Algate RM:560109**: Responsável pelo banco de dados e Compliance QA.  
-- **Carlos Clementino RM:561187**: Responsável pelo desenvolvimento da API em Java Spring Boot e .NET, infraestrutura e práticas de DevOps, e pela integração com dispositivos IoT.  
+- **Carlos Clementino RM:561187**: Responsável pelo desenvolvimento da API em Java Spring Boot e .NET, infraestrutura e práticas de DevOps, integração com dispositivos IoT.  
 - **Eder Silva RM:559647**: Responsável pela criação do APP mobile.
 
 ## Descrição Geral
