@@ -57,7 +57,7 @@ A leitura de corrente e tensão é feita por sensores conectados ao ESP32, que p
 ---
 
 ## Link do vídeo demonstrando o funcionamento
-[](https://youtu.be/frN_Slxvdxo)](#)
+[Assista agora](https://youtu.be/frN_Slxvdxo)
 
 ---
 
