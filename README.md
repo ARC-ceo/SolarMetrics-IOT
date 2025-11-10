@@ -56,6 +56,11 @@ A leitura de corrente e tensão é feita por sensores conectados ao ESP32, que p
 
 ---
 
+## Link do vídeo demonstrando o funcionamento
+[](https://youtu.be/frN_Slxvdxo)](#)
+
+---
+
 ## Código ESP32 (C++)
 
 O funcionamento do sistema ocorre da seguinte forma: o ESP32 conecta à rede Wi-Fi e, em seguida, se conecta ao broker MQTT. Após isso, ele simula dados de sensores, calcula a potência, constrói um JSON com as informações e publica os dados no tópico MQTT configurado. Esse processo é repetido continuamente.
